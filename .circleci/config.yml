@@ -1,0 +1,11 @@
+version: 2.1
+
+orbs: 
+  windows: circleci/windows@5.0.0
+
+jobs:
+  build:
+    executor:
+      name: windows/default
+    steps:
+      - run: Write-Host 'Hello, CircleCI'
