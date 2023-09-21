@@ -12,4 +12,4 @@ jobs:
           name: Create powershell profile.
           command: Copy-Item .\Powershell_profile.ps1 $PROFILE.CurrentUserCurrentHost
       - run: Write-Host 'Hello, CircleCI'
-      - run: Get-ChildItem env:
+      - run: 'Get-ChildItem $env:'
