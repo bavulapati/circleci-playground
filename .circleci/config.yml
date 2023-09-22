@@ -14,3 +14,8 @@ jobs:
           command: Copy-Item .\Powershell_profile.ps1 $PROFILE.CurrentUserCurrentHost
       - run: Write-Host 'Hello, CircleCI'
       - run: 'Get-ChildItem env:'
+      - run:
+          name: Install Winget
+          command: .circleci\install_winget.ps1
+      - run: winget install --id koalaman.shellcheck --accept-source-agreements
+      - run: shellcheck -?
