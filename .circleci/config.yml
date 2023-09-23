@@ -18,5 +18,5 @@ jobs:
           name: Install Winget
           command: .circleci\install_winget.ps1
       - run: winget install --id koalaman.shellcheck --accept-source-agreements
-      - run: ls $env:LOCALAPPDATA\Microsoft\WinGet\Packages
-      - run: $env:LOCALAPPDATA\Microsoft\WinGet\Packages\koalaman.shellcheck_Microsoft.Winget.Source_8wekyb3d8bbwe\shellcheck -?
+      - run: $env:PATH
+      - run: '& $env:LOCALAPPDATA\Microsoft\WinGet\Packages\koalaman.shellcheck_Microsoft.Winget.Source_8wekyb3d8bbwe\shellcheck -?'
