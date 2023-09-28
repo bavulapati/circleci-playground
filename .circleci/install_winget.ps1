@@ -1,5 +1,5 @@
 # Reference: https://learn.microsoft.com/en-us/windows/package-manager/winget/
-$progressPreference = 'silentlyContinue'
+# $progressPreference = 'silentlyContinue'
 Write-Information "Downloading WinGet and its dependencies..."
 Invoke-WebRequest -Uri https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle -OutFile $env:TEMP\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
 Invoke-WebRequest -Uri https://github.com/microsoft/winget-cli/releases/download/v1.5.2201/e9f07317387242099dd02cb57aa04c37_License1.xml -OutFile $env:TEMP\License.xml
