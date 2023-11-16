@@ -17,7 +17,9 @@ jobs:
       - run:
           name: Install Winget
           command: .circleci\install_winget.ps1
-      - run: winget install --id koalaman.shellcheck --accept-source-agreements
-      - run: $env:PATH
-      - run: '& $env:LOCALAPPDATA\Microsoft\WinGet\Packages\koalaman.shellcheck_Microsoft.Winget.Source_8wekyb3d8bbwe\shellcheck --help'
-      - run: shellcheck.exe --help
+      - run:
+          name: Set up Windows machine to a desired development environment state with winget
+                # Winget configure fails with Hugo and Shellcheck
+                # TODO: use configure with Hugo and Shellcheck
+          command: |
+            winget configure --accept-configuration-agreements ./configuration.dsc.yaml         
