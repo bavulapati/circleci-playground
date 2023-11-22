@@ -9,17 +9,7 @@ jobs:
       name: windows/default
     steps:
       - checkout
-      - run:
-          name: Create powershell profile.
-          command: Copy-Item .\Powershell_profile.ps1 $PROFILE.CurrentUserCurrentHost
-      - run: Write-Host 'Hello, CircleCI'
-      - run: 'Get-ChildItem env:'
-      - run:
-          name: Install Winget
-          command: .circleci\install_winget.ps1
-      - run:
-          name: Set up Windows machine to a desired development environment state with winget
-                # Winget configure fails with Hugo and Shellcheck
-                # TODO: use configure with Hugo and Shellcheck
-          command: |
-            winget configure --accept-configuration-agreements ./configuration.dsc.yaml         
+      - run: choco install cmake
+      - run: cmake -S . -B build
+      - run: cmake --build build
+      - run: cd build && ctest
