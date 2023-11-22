@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 enable_testing()
 
-#find_package(GTest CONFIG REQUIRED)
+find_package(GTest CONFIG REQUIRED)
 
 add_executable(
   hello_test
