@@ -10,7 +10,12 @@ jobs:
     steps:
       - checkout
       - run: choco install cmake --installargs 'ADD_CMAKE_TO_PATH=User' -y
-      - run: refreshenv
-      - run: cmake -S . -B build
-      - run: cmake --build build
-      - run: cd build && ctest
+      - run: 
+          name: Run Google Test
+          command: |
+            Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+            refreshenv 
+            cmake -S . -B build
+            cmake --build build
+            cd build
+            ctest
