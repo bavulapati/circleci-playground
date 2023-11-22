@@ -10,6 +10,7 @@ jobs:
     steps:
       - checkout
       - run: choco install cmake --installargs 'ADD_CMAKE_TO_PATH=User' -y
+      - run: refreshenv
       - run: cmake -S . -B build
       - run: cmake --build build
       - run: cd build && ctest
