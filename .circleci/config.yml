@@ -10,12 +10,15 @@ jobs:
     steps:
       - checkout
       - run: choco install cmake --installargs 'ADD_CMAKE_TO_PATH=User' -y
+      - run: git clone https://github.com/microsoft/vcpkg
+      - run: .\vcpkg\bootstrap-vcpkg.bat
+      - run: .\vcpkg\vcpkg install gtest:x64-windows
       - run: 
           name: Run Google Test
           command: |
             Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
             refreshenv 
-            cmake -S . -B build
+            cmake -S . -B build "-DCMAKE_TOOLCHAIN_FILE=./vcpkg/scripts/buildsystems/vcpkg.cmake"
             cmake --build build
             cd build
             ctest
