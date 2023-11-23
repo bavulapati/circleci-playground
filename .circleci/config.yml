@@ -9,8 +9,6 @@ jobs:
       name: windows/default
     steps:
       - checkout
-      - run: git clone https://github.com/microsoft/vcpkg
-      - run: .\vcpkg\bootstrap-vcpkg.bat
       - run:
           name: Get Visual Studio Workloads
           command:  C:\"Program Files (x86)"\"Microsoft Visual Studio"\Installer\setup.exe modify `
@@ -26,7 +24,7 @@ jobs:
       - run: 
           name: Run Google Test
           command: |
-            cmake -S . -B build "-DCMAKE_TOOLCHAIN_FILE=./vcpkg/scripts/buildsystems/vcpkg.cmake"
+            cmake -S . -B build
             cmake --build build
             cd build
             ctest
