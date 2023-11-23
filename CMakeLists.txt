@@ -1,6 +1,15 @@
 cmake_minimum_required(VERSION 3.14)
 
-set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
+if(DEFINED ENV{VCPKG_ROOT})
+  set(VCPKG_CMAKE_TOOLCHAIN $ENV{VCPKG_ROOT})
+  cmake_path(APPEND VCPKG_CMAKE_TOOLCHAIN scripts buildsystems vcpkg.cmake)
+endif()
+if(EXISTS "${VCPKG_CMAKE_TOOLCHAIN}")
+  message(STATUS "Using VCPKG toolchain: ${VCPKG_CMAKE_TOOLCHAIN}")
+  set(CMAKE_TOOLCHAIN_FILE "${VCPKG_CMAKE_TOOLCHAIN}" CACHE STRING "VCPKG toolchain file")
+else()
+  message(FATAL_ERROR "Could NOT find VCPKG. It is recommended to install it through Visual Studio")
+endif()
 
 project(my_project)
 
