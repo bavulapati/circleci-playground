@@ -19,11 +19,13 @@ jobs:
                             --quiet `
                             --norestart `
                             --config .vsconfig
+      - run:
+          name: Save and load powershell profile
+                # See https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.3
+          command: Copy-Item .circleci/powershell_profile.ps1 $PROFILE.CurrentUserAllHosts
       - run: 
           name: Run Google Test
           command: |
-            Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-            refreshenv 
             cmake -S . -B build "-DCMAKE_TOOLCHAIN_FILE=./vcpkg/scripts/buildsystems/vcpkg.cmake"
             cmake --build build
             cd build
