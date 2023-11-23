@@ -1,7 +1,6 @@
 {
   "version": "1.0",
   "components": [
-    "Microsoft.VisualStudio.Component.VC.CMake.Project",
     "Microsoft.VisualStudio.Component.Vcpkg"
   ]
 }
