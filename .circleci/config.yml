@@ -9,9 +9,16 @@ jobs:
       name: windows/default
     steps:
       - checkout
-      - run: choco install cmake --installargs 'ADD_CMAKE_TO_PATH=User' -y
       - run: git clone https://github.com/microsoft/vcpkg
       - run: .\vcpkg\bootstrap-vcpkg.bat
+      - run:
+          name: Get Visual Studio Workloads
+          command:  C:\"Program Files (x86)"\"Microsoft Visual Studio"\Installer\setup.exe modify `
+                            --productId Microsoft.VisualStudio.Product.Community `
+                            --channelId VisualStudio.17.Release `
+                            --quiet `
+                            --norestart `
+                            --config .vsconfig
       - run: 
           name: Run Google Test
           command: |
