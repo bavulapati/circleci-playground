@@ -20,6 +20,10 @@ jobs:
       - run:
           name: Install cmake
           command: choco install cmake --installargs 'ADD_CMAKE_TO_PATH=User' -y
+      - run:
+          name: Save and load powershell profile
+                # See https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.3
+          command: Copy-Item .circleci/powershell_profile.ps1 $PROFILE.CurrentUserAllHosts
       - run: 
           name: Run Google Test
           command: |
