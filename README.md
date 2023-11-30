@@ -1,2 +1,2 @@
 # circleci-playground
-A playground repo to experiment with circleci.
+A playground repo to experiment with circleci
